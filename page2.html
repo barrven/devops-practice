@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OOP Carousel</title>
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
+    <style>
+        .buttons-panel {
+            margin-top: 1rem;
+        }
+
+        .border-thick {
+            border-width: 5px !important;
+        }
+
+        .image-container {
+            height: 500px;
+            overflow: hidden !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid text-center">
+        <h1>Carousel of Images Controlled by Javascript</h1>
+        <div class="border border-success rounded-lg border-thick p-5 bg-dark carousel" id="carousel_1">
+            <div class="image-container">
+                <img src="img/one.jpg" alt="" class="img-fluid rounded mx-auto">
+                <img src="img/two.jpg" alt="" class="img-fluid rounded mx-auto" hidden>
+                <img src="img/three.jpg" alt="" class="img-fluid rounded mx-auto" hidden>
+                <img src="img/four.jpg" alt="" class="img-fluid rounded mx-auto" hidden>
+                <img src="img/five.jpg" alt="" class="img-fluid rounded mx-auto" hidden>
+                <img src="img/six.jpg" alt="" class="img-fluid rounded mx-auto" hidden>
+                <img src="img/seven.jpg" alt="" class="img-fluid rounded mx-auto" hidden>
+            </div>
+            <div class="buttons-panel">
+                <button class="btn btn-success btn-lg btn-prev"><span class="fas fa-arrow-circle-left"></span></button>
+                <button class="btn btn-success btn-lg btn-next"><span class="fas fa-arrow-circle-right"></span></button>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script>
+        class Carousel {
+            constructor(id) {
+                let $ = document.getElementById(id)
+                //console.log($);
+                this.images = $.getElementsByTagName('img'); //get all the img elements inside the carousel
+                this.numImages = this.images.length;
+                this.currImgIndex = 0;
+                this.btnPrev = $.getElementsByClassName('btn-prev')[0];
+                this.btnNext = $.getElementsByClassName('btn-next')[0];
+                this.addEventListeners();
+            }
+
+            //problem: how to pass the carousel object to the button when binding events
+            //solution: https://stackoverflow.com/questions/12731528/adding-event-listeners-in-constructor
+            //preferred solution:
+            addEventListeners() {
+                this.btnPrev.addEventListener('click', this.prev.bind(this));
+                this.btnNext.addEventListener('click', this.next.bind(this));
+            }
+
+            prev() {
+                let c = this.currImgIndex;
+                let prev;
+                if (c == 0) {
+                    prev = this.numImages - 1;
+                }
+                else {
+                    prev = c - 1;
+                }
+                this.images[c].hidden = true;
+                this.images[prev].hidden = false;
+                this.currImgIndex = prev;
+            }
+
+            next() {
+                let c = this.currImgIndex;
+                let next = (c + 1) % this.numImages
+                this.images[c].hidden = true;
+                this.images[next].hidden = false;
+                this.currImgIndex = next;
+            }
+
+            //alternate solution:
+            // addEventListeners(){
+            //     let self = this;
+            //     this.btnPrev.addEventListener('click', function(){
+            //         let c = self.currImgIndex;
+            //         let prev;
+            //         if (c == 0){
+            //             prev = self.numImages-1;
+            //         }
+            //         else{
+            //             prev = c-1;
+            //         }
+            //         self.images[c].hidden = true;
+            //         self.images[prev].hidden = false;
+            //         self.currImgIndex = prev;
+            //     });
+            //     this.btnNext.addEventListener('click', function(){
+            //         let c = self.currImgIndex;
+            //         let next = (c+1) % self.numImages
+            //         self.images[c].hidden = true;
+            //         self.images[next].hidden = false;
+            //         self.currImgIndex = next;
+            //     });       
+            // }
+
+        }
+
+        carousel = new Carousel('carousel_1');
+
+    </script>
+</body>
+
+</html>
