@@ -2,7 +2,7 @@ const canvas = document.getElementById('canvas');
 const context = canvas.getContext('2d');
 draw(200, 200, 20); //draw the spiral with defaults when the page loads
 
-function draw(startX, startY, n) {
+function draw(startX, startY, n){
 
     //define edges
     let xEdgeVal = canvas.getAttribute('width');
@@ -16,12 +16,12 @@ function draw(startX, startY, n) {
     let sign = 1; // sets the direction of the increment: 1 == right or down, -1 == left or up
 
     //continue drawing the line while coordinates are not out of bounds
-    while (!isOutOfBounds([coords[0], coords[1]], [xEdgeVal, yEdgeVal])) {
-        for (let i = 0; i < 2; i++) {
-            if (sign === 1) {
+    while (!isOutOfBounds([coords[0], coords[1]], [xEdgeVal, yEdgeVal])){
+        for (let i = 0; i < 2; i++){
+            if (sign === 1){
                 coords[i] += pixelIncrement;
             }
-            else {
+            else{
                 coords[i] -= pixelIncrement;
             }
             context.lineTo(coords[0], coords[1]); // next point of line
@@ -35,11 +35,11 @@ function draw(startX, startY, n) {
 }
 
 //canvas edge detection
-function isOutOfBounds(coordinates, bounds) {
+function isOutOfBounds(coordinates, bounds){
     //coordinates and bounds are arrays of the same length
     let length = coordinates.length;
 
-    for (let i = 0; i < length; i++) {
+    for (let i = 0; i < length; i++){
         //if any coordinates are < 0, then they are out of bounds
         if (coordinates[i] < 0)
             return true;
@@ -51,11 +51,11 @@ function isOutOfBounds(coordinates, bounds) {
     return false;
 }
 
-function getValue(inputElement) {
+function getValue(inputElement){
     return document.getElementById(inputElement).value;
 }
 
-function update() {
+function update(){
 
     /*get the value of each input element, then
     convert the string to an int so we can do math with it inside the draw function*/
@@ -68,11 +68,11 @@ function update() {
 }
 
 //clears the canvas of previous drawings
-function erase() {
+function erase(){
     let width = parseInt(canvas.getAttribute('width'));
     let height = parseInt(canvas.getAttribute('height'));
     //clears a rectangle shaped space of a given height and width and starting x,y
-    context.clearRect(0, 0, width, height);
+    context.clearRect(0,0, width, height);
     /*essential to use .beginPath() to clear the line buffer so that old lines do not
     appear next time .stroke() is called*/
     context.beginPath();
