@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Square Spiral</title>
+    <link rel="stylesheet" href="css/style1.css">
+
+</head>
+
+<body>
+    <h1>This is a square spiral</h1>
+    <div class="container">
+        <p>This spiral originates from a starting point set using (x,y) coordinates
+            measured from the top left corner of the canvas.</p>
+        <p>It is drawn in line segments of n length from the starting point using the
+            following steps:</p>
+        <table>
+            <tr>
+                <td>1. </td>
+                <td>Move right</td>
+                <td>x2 = x1 + n</td>
+            </tr>
+            <tr>
+                <td>2. </td>
+                <td>Move down</td>
+                <td>y2 = y1 + n</td>
+            </tr>
+            <tr>
+                <td>3. </td>
+                <td>Move left</td>
+                <td>x3 = x2 - n</td>
+            </tr>
+            <tr>
+                <td>4. </td>
+                <td>Move up</td>
+                <td>y3 = y2 - n</td>
+            </tr>
+        </table>
+        <p>The line stops when it hits the edge of the display.</p>
+        <p>The sliders below control the x,y coordinates of where the spiral starts.</p>
+    </div>
+
+    <div class="canvas-container">
+        <!-- must set height and width of canvas inline -->
+        <canvas id="canvas" width="400" height="400">Browser does note support canvas</canvas>
+    </div>
+
+    <div class="controls">
+
+        <label for="n">n </label>
+        <input class="range-input" type="range" id="n" min="1" max="49"
+            title="Line segment starting length and increment" value="25" onchange="update()">
+        <br>
+
+        <label for="x">x </label>
+        <input class="range-input" type="range" id="x" min="0" max="400" title="starting x coordinate" value="200"
+            onchange="update()">
+        <br>
+
+        <label for="y">y </label>
+        <input class="range-input" type="range" id="y" min="0" max="400" title="starting y coordinate" value="200"
+            onchange="update()">
+        <br>
+
+        <hr>
+        <button onclick="erase()">Erase</button>
+    </div>
+
+    <script src="js/script1.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+body{
+    font-family: 'Courier New', Courier, monospace;
+    color: white;
+    background-color: black;
+    text-align: center;
+}
+.container{
+    text-align: left;
+    margin: auto;
+    width: 70%;
+    max-width: 40rem;
+    padding: 10px 0 10px 0;
+}
+table{
+    border-collapse: collapse;
+    max-width: 30rem;
+    margin: auto;
+}
+table td{
+    border: 1px solid white;
+    padding: 10px;
+}
+.canvas-container{
+    margin: auto;
+    width: 400px;
+    height:400px;
+}
+canvas{
+    width: 400px;
+    height:400px;
+    background-color: white;
+    border: 2px solid black;
+}
+.controls{
+    display: block;
+    padding-top: 20px;
+    margin: auto;
+    width: 450px;
+}
+.range-input{
+    width: 150px;
+}
